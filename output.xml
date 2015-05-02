@@ -1,0 +1,26 @@
+<data>
+    <usd>
+        <buy>
+            <min>
+                <bank>Банк Кредит Дніпро</bank>
+                <value>20.0</value>
+            </min>
+            <max>
+                <bank>OTPBank</bank>
+                <value>24.0</value>
+            </max>
+            <average>22.077</average>
+        </buy>
+        <sale>
+            <min>
+                <bank>INTERNATIONAL INVESTMENT BANK</bank>
+                <value>24.0</value>
+            </min>
+            <max>
+                <bank>ПриватБанк</bank>
+                <value>26.0</value>
+            </max>
+            <average>25.3</average>
+        </sale>
+    </usd>
+</data>
