@@ -25,7 +25,7 @@ def get_data_from_url(url, depth):
         print(email)
 
     if depth == 2:
-        return []
+        return emails_list
 
     urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', page.text)
     for _url in urls:
