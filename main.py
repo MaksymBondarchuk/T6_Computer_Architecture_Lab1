@@ -6,6 +6,8 @@ import sys
 import requests
 
 
+max_depth = 2
+
 def get_data_from_url(url, depth):
     for i in range(2, depth + 1):
         sys.stdout.write('\t')
@@ -24,7 +26,7 @@ def get_data_from_url(url, depth):
             sys.stdout.write('\t')
         print(email)
 
-    if depth == 2:
+    if depth == max_depth:
         return emails_list
 
     urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', page.text)
@@ -42,10 +44,15 @@ def get_data_from_xml(xml_name):
 
     urls = []
     for url in root.findall('url'):
-        urls.extend(url.text)
-        emails = get_data_from_url(url.text, 1)
-        print_to_xml('output.xml', emails)
+        urls.append(url.text)
     return urls
+
+
+def get_data_from_urls(urls_list):
+    emails_list = []
+    for url in urls_list:
+        emails_list.extend(get_data_from_url(url, 1))
+    return emails_list
 
 
 def print_to_xml(xml_name, emails):
@@ -58,11 +65,7 @@ def print_to_xml(xml_name, emails):
 
 
 start_time = time.time()
-get_data_from_xml('input.xml')
-
-# if isinstance([1, 2, 3], list):
-# print("Yes")
-# else:
-#     print('No')
-
+urls_lst = get_data_from_xml('input.xml')
+emails_lst = get_data_from_urls(urls_lst)
+print_to_xml('output.xml', emails_lst)
 print('Time of program work is %s seconds' % (time.time() - start_time))
