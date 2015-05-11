@@ -2,8 +2,7 @@ import time
 
 import gevent
 
-from common import *
-
+from python.common import *
 
 
 # Gets data from url and then calls itself
@@ -12,7 +11,8 @@ def get_data_from_url(url, depth):
     emails_list = emails_and_urls['emails']
     urls_list = emails_and_urls['urls']
 
-    work = [gevent.spawn(get_data_from_url, url, depth + 1) for url in urls_list]
+    work = [gevent.spawn(get_data_from_url, url, depth + 1)
+            for url in urls_list]
     gevent.joinall(work)
     emails_list.extend(thread.value for thread in work)
 

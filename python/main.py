@@ -1,7 +1,6 @@
 import time
 
-from common import *
-
+from python.common import *
 
 
 # Gets data from url and then calls itself
@@ -25,8 +24,9 @@ def get_data_from_urls(urls_list):
     return emails_list
 
 
-start_time = time.time()
-urls_lst = get_data_from_xml('input.xml')
-emails_lst = get_data_from_urls(urls_lst)
-print_to_xml('output.xml', emails_lst)
-print('Time of program work is %s seconds' % (time.time() - start_time))
+if __name__ == '__main__':
+    start_time = time.time()
+    urls_lst = get_data_from_xml('../xml/input.xml')
+    emails_lst = get_data_from_urls(urls_lst)
+    print_to_xml('../xml/output.xml', emails_lst)
+    print('Time of program work is %s seconds' % (time.time() - start_time))
