@@ -41,13 +41,13 @@ def get_data_from_url_common(url, depth):
 
     # Trying to download page. If error occurred, returns empty list
     try:
-        page = requests.get(url)
+        page = requests.get(url).text
     except:
         return []
 
     # Getting all emails on this page
     emails_list = []
-    emails = re.findall('[\w\.-]+@[\w\.-]+', page.text)
+    emails = re.findall('[\w\.-]+@[\w\.-]+', page)
     for email in emails:
         emails_list.append(email)
 
@@ -63,7 +63,7 @@ def get_data_from_url_common(url, depth):
 
     # Going to all links on this page
     urls = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]'
-                      '|(?:%[0-9a-fA-F][0-9a-fA-F]))+', page.text)
+                      '|(?:%[0-9a-fA-F][0-9a-fA-F]))+', page)
 
     # Removing current url from list
     try:
