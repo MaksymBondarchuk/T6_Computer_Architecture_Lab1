@@ -48,6 +48,7 @@ def get_data_from_url_common(url, depth):
     # Getting all emails on this page
     emails_list = []
     emails = re.findall('[\w\.-]+@[\w\.-]+', page)
+    emails.extend(re.findall('[\w\.-]+\(at\)[\w\.-]+', page))
     for email in emails:
         emails_list.append(email)
 

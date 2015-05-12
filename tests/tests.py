@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
         request_function.return_value = mock.return_value
 
         res = common.get_data_from_url_common('http://www.cvk.gov.ua/pls/vnd2014/wp312?PT001F01=910', 1)
-        self.assertEqual(res['emails'], ['post@cvk.gov.ua'])
+        self.assertEqual(res['emails'], ['post@cvk.gov.ua', 'post(at)cvk.gov.ua'])
 
 
 if __name__ == '__main__':
